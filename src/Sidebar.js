@@ -9,6 +9,8 @@ const Sidebar = () => {
   
   console.log("Hii From side bar!! = ", user);
   const { displayName, email,photoURL } = user;
+
+
  const recentItems = (topic) => {
 
   return (
@@ -27,7 +29,7 @@ const Sidebar = () => {
           src="https://images.unsplash.com/photo-1682685797661-9e0c87f59c60?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwxfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=800&q=60"
           alt=""
         />
-        <Avatar src={photoURL} className="sidebar__avatar" >{email[0].toUpperCase()}</Avatar>
+        <Avatar src={photoURL} className="sidebar__avatar" >{email[0]?.toUpperCase() || ''}</Avatar>
         <h2>{displayName}</h2>
         <p>{email}</p>
       </div>

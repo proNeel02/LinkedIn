@@ -13,10 +13,16 @@ function App() {
   const user = useSelector(selectUser);
   const dispatch = useDispatch();
 
+   
+ 
   useEffect(() => {
     auth.onAuthStateChanged((userAuth) => {
+
+      console.log("userAuth from useEffect = ", userAuth);
       if (userAuth) {
         // user is logged in
+
+       
         dispatch(
           login({
             email: userAuth.email,
@@ -32,11 +38,9 @@ function App() {
     });
   }, []);
 
-  console.log(user);
-
   return (
     <div className="app">
-      {user ? (
+      {user?.displayName ? (
         <>
           <Header />
           <div className="app__body">

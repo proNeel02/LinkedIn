@@ -9,11 +9,11 @@ import SendIcon from "@mui/icons-material/Send";
 const Post = forwardRef(({ name, description, message, photoUrl }, ref) => {
   
   
-  
   return (
     <div ref={ref} className="post">
+
       <div className="post__header">
-        <Avatar src={photoUrl} alt="">{name[0]}</Avatar>
+        <Avatar src={photoUrl} alt="">{name}</Avatar>
         <div className="post__info">
           <h2>{name}</h2>
           <p>{description}</p>

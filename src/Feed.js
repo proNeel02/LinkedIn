@@ -26,26 +26,6 @@ const Feed = () => {
   const [posts, setPosts] = useState([]);
   const [input, setInput] = useState("");
 
-  // // useEffect( () => {
-  // //  db.collection("posts").onSnapshot(snapshot => {
-
-  // //   setPosts(snapshot.docs.map(doc => {
-  // //     return {
-  // //       id : doc.id,
-  // //       data:doc.data()
-  // //     }
-  // //   }));
-  // //  });
-  // // },[]);
-
-  //   const sendPost = (e) => {
-  //     e.preventDefault();
-
-  //     // db.collection('post').add({
-  //     //   name:'Prashant Dabe',
-  //     //   description:'this is test'
-  //     // });
-  //   };
 
   useEffect(() => {
     const q = query(collection(db, "posts"), orderBy("timestamp", "desc"));
@@ -70,7 +50,7 @@ const Feed = () => {
       name: user?.displayName,
       description:  user?.email,
       message: input,
-      photoUrl: user?.photoURL || null,
+      photoUrl: user?.photoURL || '',
       timestamp: serverTimestamp(),
     });
 
@@ -120,14 +100,14 @@ const Feed = () => {
 
       {/* Post */}
       <FlipMove>
-      {posts.map(({ id, data: { name, description, message, photoUrl } }) => {
+      {posts.map((post) => {
         return (
           <Post
-            key={id}
-            name={name}
-            description={description}
-            message={message}
-            photoUrl={photoUrl}
+            key={post.data.id}
+            name={post.data.name}
+            description={post.data.description}
+            message={post.data.message}
+            photoUrl={post.data.photoUrl}
           />
         );
       })}

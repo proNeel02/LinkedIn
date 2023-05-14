@@ -9,14 +9,18 @@ const Login = () => {
     name: "",
     email: "",
     password: "",
-    imageUrl: null,
+    imageUrl: "",
   });
 
   const dispatch = useDispatch();
 
-  const register = (e) => {
+  const register = () => {
     const { name, email, password, imageUrl } = userData;
 
+    if (!imageUrl) {
+      return alert("Please enter image URl");
+    }
+    
     if (!name) {
       return alert("Please enter a full name");
     }
@@ -37,26 +41,25 @@ const Login = () => {
           displayName: name,
           photoURL: imageUrl,
         };
-
         updateProfile(user, updatedProfile)
           .then(() => {
             console.log("User profile updated successfully");
-            dispatch(login(user));
+            dispatch(login({...user}));
           })
           .catch((error) => {
             console.log("Error updating user profile: ", error);
           });
 
-        console.log(user);
-        alert("user is created!!");
-        dispatch(
-          login({
-            email: user.email,
-            uid: user.uid,
-            displayName: name,
-            photoURL: imageUrl,
-          })
-        );
+        // console.log(user);
+        // alert("user is created!!");
+        // dispatch(
+        //   login({
+        //     email: user.email,
+        //     uid: user.uid,
+        //     displayName: name,
+        //     photoURL: imageUrl,
+        //   })
+        // );
       })
       .catch((error) => {
         const errorMessage = error.message;
@@ -73,8 +76,7 @@ const Login = () => {
     .then((userCredential) => {
         const user = userCredential.user;
         console.log(user);
-        alert("Successfully signed in!");
-        console.log(user);
+        // alert("Successfully signed in!");
         dispatch(login({
             email: user.email,
             uid: user.uid,
@@ -153,7 +155,7 @@ const Login = () => {
           }
         />
         <button type="submit" onClick={loginToApp}>
-          Sign In
+          Login
         </button>
       </form>
       <p>

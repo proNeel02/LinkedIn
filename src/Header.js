@@ -13,8 +13,10 @@ import { auth } from "./Firebase";
 const Header = () => {
   const user = useSelector(selectUser);
  
-  const { displayName, email, } = user;
+  const { displayName, email, photoURL} = user;
+  
 
+  console.log(user);
   
   const dispatch = useDispatch();
   const logOutApp = () => {
@@ -50,6 +52,7 @@ const Header = () => {
           title={"me"}
           onClick={logOutApp}
         />
+          
       </div>
     </div>
   );
