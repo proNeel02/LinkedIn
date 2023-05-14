@@ -7,7 +7,6 @@ const Sidebar = () => {
   
   const user = useSelector(selectUser);
   
-  console.log("Hii From side bar!! = ", user);
   const { displayName, email,photoURL } = user;
 
 

@@ -8,7 +8,7 @@ import SubscriptionsIcon from "@mui/icons-material/Subscriptions";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import EventAvailableIcon from "@mui/icons-material/EventAvailable";
 import Post from "./Post";
-import { db, auth } from "./Firebase";
+import { db } from "./Firebase";
 import {
   collection,
   onSnapshot,

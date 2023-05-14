@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "./Header.css";
 import SearchIcon from "@mui/icons-material/Search";
 import HeaderOption from "./HeaderOption.js";
@@ -13,8 +13,7 @@ import { auth } from "./Firebase";
 const Header = () => {
   const user = useSelector(selectUser);
  
-  const { displayName, email, photoURL} = user;
-  
+  const { displayName } = user;
 
   console.log(user);
   
