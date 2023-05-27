@@ -4,6 +4,7 @@ import { auth } from "./Firebase";
 import { useDispatch } from "react-redux";
 import { createUserWithEmailAndPassword, updateProfile, signInWithEmailAndPassword } from "firebase/auth";
 import { login } from "./features/userSlice";
+import axios from 'axios';
 const Login = () => {
   const [userData, setUserData] = useState({
     name: "",
@@ -14,7 +15,7 @@ const Login = () => {
 
   const dispatch = useDispatch();
 
-  const register = () => {
+  const register = async() => {
     const { name, email, password, imageUrl } = userData;
 
     if (!imageUrl) {
@@ -33,6 +34,43 @@ const Login = () => {
       return alert("please enter password!!");
     }
 
+
+
+    // const options = {
+    //   method: 'GET',
+    //   url: 'https://ismaelc-bitly.p.rapidapi.com/v3/shorten',
+    //   params: {
+    //     login: '<REQUIRED>',
+    //     apikey: '<REQUIRED>',
+    //     longUrl: 'http://www.mashape.com'
+    //   },
+    //   headers: {
+    //     'X-RapidAPI-Key': '53af5da2abmshabb22a988df5257p1cf270jsnf4a8465abde6',
+    //     'X-RapidAPI-Host': 'ismaelc-bitly.p.rapidapi.com'
+    //   }
+    // };
+
+// options.params.longUrl = imageUrl;
+
+// try {
+// 	const response = await axios.request(options);
+//   console.log("Hello from try block");
+// 	console.log(response.data);
+//   setUserData((prevUserData) => {
+     
+//       return {
+//         ...prevUserData,
+//         imageUrl:response.data
+//       }
+//   });
+
+// } catch (error) {
+// 	console.error(error);
+//   return alert("Image url is too long");
+// }
+
+
+
     // Use the below code to create a new user with email and password
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
@@ -49,17 +87,6 @@ const Login = () => {
           .catch((error) => {
             console.log("Error updating user profile: ", error);
           });
-
-        // console.log(user);
-        // alert("user is created!!");
-        // dispatch(
-        //   login({
-        //     email: user.email,
-        //     uid: user.uid,
-        //     displayName: name,
-        //     photoURL: imageUrl,
-        //   })
-        // );
       })
       .catch((error) => {
         const errorMessage = error.message;
@@ -115,7 +142,7 @@ const Login = () => {
         />
 
         <input
-          placeholder="Profile pic URL (Optional)"
+          placeholder="Profile pic URL"
           type="text"
           value={userData.imageUrl}
           onChange={(e) =>
@@ -154,6 +181,7 @@ const Login = () => {
             })
           }
         />
+         
         <button type="submit" onClick={loginToApp}>
           Login
         </button>
